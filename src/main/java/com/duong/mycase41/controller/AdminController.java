@@ -1,14 +1,9 @@
 package com.duong.mycase41.controller;
 
-import com.duong.mycase41.model.AppSubject;
-import com.duong.mycase41.model.Classes;
+import com.duong.mycase41.model.*;
 import com.duong.mycase41.model.DTO.formUser.TeacherForm;
-import com.duong.mycase41.model.Student;
-import com.duong.mycase41.model.Teacher;
-import com.duong.mycase41.repository.ISubjectRepository;
 import com.duong.mycase41.service.classes.ClassesService;
 import com.duong.mycase41.service.gender.IGenderService;
-import com.duong.mycase41.service.student.IStudentService;
 import com.duong.mycase41.service.subject.ISubjectService;
 import com.duong.mycase41.service.teacher.ITeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/admin")
@@ -81,13 +77,14 @@ public class AdminController {
         return new ResponseEntity<>(teacherService.findAll(), HttpStatus.OK);
     }
 
-//    @PostMapping("/teachers")
-//    public ResponseEntity<Teacher> createTeacher(@ModelAttribute TeacherForm teacherForm) {
-//        MultipartFile file = teacherForm.getAvatar();
-//        String fileName = file.getOriginalFilename();
-//        String fileUpload = environment.getProperty("upload.path").toString();
-//        String userName = teacherForm.getAppUser().getName();
-//        String password = teacherForm.getAppUser().getPassword();
-//        Set role = teacherForm.getAppUser().getRoleSet();
-//    }
+    @PostMapping("/teachers")
+    public ResponseEntity<Teacher> createTeacher(@ModelAttribute TeacherForm teacherForm) {
+        MultipartFile file = teacherForm.getAvatar();
+        String fileName = file.getOriginalFilename();
+        String fileUpload = environment.getProperty("upload.path").toString();
+        String userName = teacherForm.getAppUser().getName();
+        String password = teacherForm.getAppUser().getPassword();
+        Set<AppRole> role = teacherForm.getAppUser().getRoleSet();
+
+    }
 }
