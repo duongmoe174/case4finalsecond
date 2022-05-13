@@ -73,13 +73,33 @@ public class AdminStudentController {
     @Autowired
     private IStatusService statusService;
 
-    @ModelAttribute("status")
+    @ModelAttribute("statuses")
     private Iterable<StatusStudent> statusStudent(){
         return statusService.findAll();
     }
 
     @Autowired
     private Environment env;
+
+    @GetMapping("/genders")
+    private ResponseEntity<Iterable<Gender>> showAllGender(){
+        return new ResponseEntity<>(genderService.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/status")
+    private ResponseEntity<Iterable<StatusStudent>> showAllStatus(){
+        return new ResponseEntity<>(statusService.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/tuitions")
+    private ResponseEntity<Iterable<Tuition>> showAllTuition(){
+        return new ResponseEntity<>(tuitionService.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/classes")
+    private ResponseEntity<Iterable<Classes>> showAllClass(){
+        return new ResponseEntity<>(classesService.findAll(), HttpStatus.OK);
+    }
 
     @GetMapping
     public ResponseEntity<Iterable<Student>> showAllStudent(){
