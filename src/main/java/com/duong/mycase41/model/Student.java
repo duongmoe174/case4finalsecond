@@ -11,6 +11,7 @@ public class Student {
     private Long id;
     @OneToOne
     private AppUser appUser;
+    private String code;
     private String fullName;
     private String phoneNumber;
     private String avatar;
@@ -43,6 +44,14 @@ public class Student {
 
     public void setAppUser(AppUser appUser) {
         this.appUser = appUser;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getFullName() {
@@ -125,8 +134,9 @@ public class Student {
         this.statusStudent = statusStudent;
     }
 
-    public Student(AppUser appUser, String fullName, String phoneNumber, String avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Tuition tuition, StatusStudent statusStudent) {
+    public Student(AppUser appUser, String code, String fullName, String phoneNumber, String avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Tuition tuition, StatusStudent statusStudent) {
         this.appUser = appUser;
+        this.code = code;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.avatar = avatar;
@@ -139,9 +149,10 @@ public class Student {
         this.statusStudent = statusStudent;
     }
 
-    public Student(Long id, AppUser appUser, String fullName, String phoneNumber, String avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Tuition tuition, StatusStudent statusStudent) {
+    public Student(Long id, AppUser appUser, String code, String fullName, String phoneNumber, String avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Tuition tuition, StatusStudent statusStudent) {
         this.id = id;
         this.appUser = appUser;
+        this.code = code;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.avatar = avatar;
