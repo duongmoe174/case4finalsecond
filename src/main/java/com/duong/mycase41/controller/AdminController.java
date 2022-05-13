@@ -50,4 +50,14 @@ public class AdminController {
     public ResponseEntity<AppSubject> createSubject(@ModelAttribute AppSubject subject) {
         return new ResponseEntity<>(subjectService.save(subject), HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/subject/{id}")
+    public ResponseEntity<AppSubject> deleteSubject(@PathVariable Long id) {
+        Optional<AppSubject> subjectOptional = subjectService.findById(id);
+        if (!subjectOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        subjectService.remove(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

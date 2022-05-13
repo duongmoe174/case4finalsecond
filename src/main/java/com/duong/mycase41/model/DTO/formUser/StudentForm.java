@@ -14,13 +14,12 @@ public class StudentForm {
     private String dateOfBirth;
     private String address;
     private Classes classes;
-    private Teacher teacher;
     private Tuition tuition;
 
     public StudentForm() {
     }
 
-    public StudentForm(Long id, AppUser appUser, String fullName, String phoneNumber, MultipartFile avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Teacher teacher, Tuition tuition) {
+    public StudentForm(Long id, AppUser appUser, String fullName, String phoneNumber, MultipartFile avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Tuition tuition) {
         this.id = id;
         this.appUser = appUser;
         this.fullName = fullName;
@@ -31,11 +30,10 @@ public class StudentForm {
         this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.classes = classes;
-        this.teacher = teacher;
         this.tuition = tuition;
     }
 
-    public StudentForm(AppUser appUser, String fullName, String phoneNumber, MultipartFile avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Teacher teacher, Tuition tuition) {
+    public StudentForm(AppUser appUser, String fullName, String phoneNumber, MultipartFile avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Tuition tuition) {
         this.appUser = appUser;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
@@ -45,7 +43,6 @@ public class StudentForm {
         this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.classes = classes;
-        this.teacher = teacher;
         this.tuition = tuition;
     }
 
@@ -127,14 +124,6 @@ public class StudentForm {
 
     public void setClasses(Classes classes) {
         this.classes = classes;
-    }
-
-    public Teacher getTeacher() {
-        return teacher;
-    }
-
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
     }
 
     public Tuition getTuition() {
