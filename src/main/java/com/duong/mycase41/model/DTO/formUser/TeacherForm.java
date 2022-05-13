@@ -1,14 +1,19 @@
 package com.duong.mycase41.model.DTO.formUser;
 
+import com.duong.mycase41.model.AppRole;
 import com.duong.mycase41.model.AppUser;
 import com.duong.mycase41.model.Classes;
 import com.duong.mycase41.model.Gender;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Set;
+
 
 public class TeacherForm {
     private Long id;
-    private AppUser appUser;
+    private String userName;
+    private String password;
+    private Set<AppRole> roleSet;
     private String fullName;
     private String phoneNumber;
     private MultipartFile avatar;
@@ -16,34 +21,9 @@ public class TeacherForm {
     private Gender gender;
     private String dateOfBirth;
     private String address;
-    private Classes classes;
+    private Set<Classes> classes;
 
     public TeacherForm() {
-    }
-
-    public TeacherForm(Long id, AppUser appUser, String fullName, String phoneNumber, MultipartFile avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes) {
-        this.id = id;
-        this.appUser = appUser;
-        this.fullName = fullName;
-        this.phoneNumber = phoneNumber;
-        this.avatar = avatar;
-        this.email = email;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.address = address;
-        this.classes = classes;
-    }
-
-    public TeacherForm(AppUser appUser, String fullName, String phoneNumber, MultipartFile avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes) {
-        this.appUser = appUser;
-        this.fullName = fullName;
-        this.phoneNumber = phoneNumber;
-        this.avatar = avatar;
-        this.email = email;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.address = address;
-        this.classes = classes;
     }
 
     public Long getId() {
@@ -54,12 +34,28 @@ public class TeacherForm {
         this.id = id;
     }
 
-    public AppUser getAppUser() {
-        return appUser;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setAppUser(AppUser appUser) {
-        this.appUser = appUser;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<AppRole> getRoleSet() {
+        return roleSet;
+    }
+
+    public void setRoleSet(Set<AppRole> roleSet) {
+        this.roleSet = roleSet;
     }
 
     public String getFullName() {
@@ -118,11 +114,40 @@ public class TeacherForm {
         this.address = address;
     }
 
-    public Classes getClasses() {
+    public Set<Classes> getClasses() {
         return classes;
     }
 
-    public void setClasses(Classes classes) {
+    public void setClasses(Set<Classes> classes) {
+        this.classes = classes;
+    }
+
+    public TeacherForm(String userName, String password, Set<AppRole> roleSet, String fullName, String phoneNumber, MultipartFile avatar, String email, Gender gender, String dateOfBirth, String address, Set<Classes> classes) {
+        this.userName = userName;
+        this.password = password;
+        this.roleSet = roleSet;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.avatar = avatar;
+        this.email = email;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.classes = classes;
+    }
+
+    public TeacherForm(Long id, String userName, String password, Set<AppRole> roleSet, String fullName, String phoneNumber, MultipartFile avatar, String email, Gender gender, String dateOfBirth, String address, Set<Classes> classes) {
+        this.id = id;
+        this.userName = userName;
+        this.password = password;
+        this.roleSet = roleSet;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.avatar = avatar;
+        this.email = email;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
         this.classes = classes;
     }
 }

@@ -2,6 +2,7 @@ package com.duong.mycase41.controller;
 
 import com.duong.mycase41.model.*;
 import com.duong.mycase41.model.DTO.formUser.TeacherForm;
+import com.duong.mycase41.service.appuser.IAppUserService;
 import com.duong.mycase41.service.classes.ClassesService;
 import com.duong.mycase41.service.gender.IGenderService;
 import com.duong.mycase41.service.subject.ISubjectService;
@@ -10,9 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Optional;
 import java.util.Set;
 
@@ -26,6 +30,9 @@ public class AdminController {
     private Environment environment;
     @Autowired
     private ClassesService classesService;
+
+    @Autowired
+    private IAppUserService appUserService;
 //-----------CLASSES--------------
     @GetMapping("/classes")
     public ResponseEntity<Iterable<Classes>> getAllClasses () {
@@ -82,13 +89,14 @@ public class AdminController {
         MultipartFile file = teacherForm.getAvatar();
         String fileName = file.getOriginalFilename();
         String fileUpload = environment.getProperty("upload.path").toString();
-        String userName = teacherForm.getAppUser().getName();
-        String password = teacherForm.getAppUser().getPassword();
-        Set<AppRole> role = teacherForm.getAppUser().getRoleSet();
+        String userName = teacherForm.getUserName();
+        String password = teacherForm.getPassword();
+        Set<AppRole> roleSet = teacherForm.getRoleSet();
         String fullName = teacherForm.getFullName();
         String phoneNumber = teacherForm.getPhoneNumber();
         String email = teacherForm.getEmail();
         Gender gender = teacherForm.getGender();
-
+        String dateOfBirth = teacherForm.getDateOfBirth();
+        String address = teacherForm.getAddress();
     }
 }
