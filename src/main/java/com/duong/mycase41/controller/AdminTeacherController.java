@@ -11,9 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Optional;
 import java.util.Set;
 
@@ -95,5 +98,16 @@ public class AdminTeacherController {
         Gender gender = teacherForm.getGender();
         String dateOfBirth = teacherForm.getDateOfBirth();
         String address = teacherForm.getAddress();
+        Set<Classes> classes = teacherForm.getClasses();
+        try {
+            FileCopyUtils.copy(teacherForm.getAvatar().getBytes(), new File(fileUpload + fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        AppUser appUser = new AppUser(userName, password, roleSet);
+        appUserService.save(appUser);
+        Teacher teacher = new Teacher(appUser, fullName, phoneNumber, fileName ,email, gender, dateOfBirth, address, classes);
+        teacherService.save(teacher);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
