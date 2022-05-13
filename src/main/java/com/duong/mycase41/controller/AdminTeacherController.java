@@ -80,7 +80,7 @@ public class AdminTeacherController {
     @Autowired
     private ITeacherService teacherService;
     @GetMapping("/teachers")
-    public ResponseEntity<Iterable<Teacher>> getAllStudent() {
+    public ResponseEntity<Iterable<Teacher>> getAllTeacher() {
         return new ResponseEntity<>(teacherService.findAll(), HttpStatus.OK);
     }
 
