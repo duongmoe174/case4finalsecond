@@ -3,9 +3,13 @@ package com.duong.mycase41.model.DTO.formUser;
 import com.duong.mycase41.model.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Set;
+
 public class StudentForm {
     private Long id;
-    private AppUser appUser;
+    private String userName;
+    private String password;
+    private Set<AppRole> roleSet;
     private String fullName;
     private String phoneNumber;
     private MultipartFile avatar;
@@ -20,35 +24,6 @@ public class StudentForm {
     public StudentForm() {
     }
 
-    public StudentForm(AppUser appUser, String fullName, String phoneNumber, MultipartFile avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Tuition tuition, StatusStudent statusStudent) {
-        this.appUser = appUser;
-        this.fullName = fullName;
-        this.phoneNumber = phoneNumber;
-        this.avatar = avatar;
-        this.email = email;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.address = address;
-        this.classes = classes;
-        this.tuition = tuition;
-        this.statusStudent = statusStudent;
-    }
-
-    public StudentForm(Long id, AppUser appUser, String fullName, String phoneNumber, MultipartFile avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Tuition tuition, StatusStudent statusStudent) {
-        this.id = id;
-        this.appUser = appUser;
-        this.fullName = fullName;
-        this.phoneNumber = phoneNumber;
-        this.avatar = avatar;
-        this.email = email;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.address = address;
-        this.classes = classes;
-        this.tuition = tuition;
-        this.statusStudent = statusStudent;
-    }
-
     public Long getId() {
         return id;
     }
@@ -57,12 +32,28 @@ public class StudentForm {
         this.id = id;
     }
 
-    public AppUser getAppUser() {
-        return appUser;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setAppUser(AppUser appUser) {
-        this.appUser = appUser;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<AppRole> getRoleSet() {
+        return roleSet;
+    }
+
+    public void setRoleSet(Set<AppRole> roleSet) {
+        this.roleSet = roleSet;
     }
 
     public String getFullName() {
@@ -142,6 +133,39 @@ public class StudentForm {
     }
 
     public void setStatusStudent(StatusStudent statusStudent) {
+        this.statusStudent = statusStudent;
+    }
+
+    public StudentForm(String userName, String password, Set<AppRole> roleSet, String fullName, String phoneNumber, MultipartFile avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Tuition tuition, StatusStudent statusStudent) {
+        this.userName = userName;
+        this.password = password;
+        this.roleSet = roleSet;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.avatar = avatar;
+        this.email = email;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.classes = classes;
+        this.tuition = tuition;
+        this.statusStudent = statusStudent;
+    }
+
+    public StudentForm(Long id, String userName, String password, Set<AppRole> roleSet, String fullName, String phoneNumber, MultipartFile avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Tuition tuition, StatusStudent statusStudent) {
+        this.id = id;
+        this.userName = userName;
+        this.password = password;
+        this.roleSet = roleSet;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.avatar = avatar;
+        this.email = email;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.classes = classes;
+        this.tuition = tuition;
         this.statusStudent = statusStudent;
     }
 }
