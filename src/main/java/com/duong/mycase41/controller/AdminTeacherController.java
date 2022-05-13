@@ -80,7 +80,7 @@ public class AdminTeacherController {
     @Autowired
     private ITeacherService teacherService;
     @GetMapping("/teachers")
-    public ResponseEntity<Iterable<Teacher>> getAllStudent() {
+    public ResponseEntity<Iterable<Teacher>> getAllTeacher() {
         return new ResponseEntity<>(teacherService.findAll(), HttpStatus.OK);
     }
 
@@ -108,6 +108,49 @@ public class AdminTeacherController {
         appUserService.save(appUser);
         Teacher teacher = new Teacher(appUser, fullName, phoneNumber, fileName ,email, gender, dateOfBirth, address, classes);
         teacherService.save(teacher);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(teacher, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/teachers/{id}")
+    public ResponseEntity<Teacher> deleteTeacher (@PathVariable Long id) {
+        Optional<Teacher> teacherOptional = teacherService.findById(id);
+        if (!teacherOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        teacherService.remove(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("teachers/edit/{id}")
+    public ResponseEntity<Teacher> editTeacher (@PathVariable Long id, @ModelAttribute TeacherForm teacherForm) {
+        Optional<Teacher> teacherOptional = teacherService.findById(id);
+        if (!teacherOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            MultipartFile file = teacherForm.getAvatar();
+            String fileName = file.getOriginalFilename();
+            String fileUpload = environment.getProperty("upload.path").toString();
+            String userName = teacherForm.getUserName();
+            String password = teacherForm.getPassword();
+            Set<AppRole> roleSet = teacherForm.getRoleSet();
+            String fullName = teacherForm.getFullName();
+            String phoneNumber = teacherForm.getPhoneNumber();
+            String email = teacherForm.getEmail();
+            Gender gender = teacherForm.getGender();
+            String dateOfBirth = teacherForm.getDateOfBirth();
+            String address = teacherForm.getAddress();
+            Set<Classes> classes = teacherForm.getClasses();
+            try {
+                FileCopyUtils.copy(teacherForm.getAvatar().getBytes(), new File(fileUpload + fileName));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            AppUser appUser = new AppUser(userName, password, roleSet);
+            appUserService.save(appUser);
+            Teacher teacher = new Teacher(appUser, fullName, phoneNumber, fileName ,email, gender, dateOfBirth, address, classes);
+            teacher.setId(id);
+            teacherService.save(teacher);
+            return new ResponseEntity<>(teacher, HttpStatus.OK);
+        }
     }
 }
