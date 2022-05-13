@@ -116,7 +116,7 @@ public class AdminStudentController {
         return new ResponseEntity<>(student, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Student> deleteStudent(@PathVariable Long id){
         Optional<Student> studentOptional = studentService.findById(id);
         if (!studentOptional.isPresent()){
@@ -124,5 +124,48 @@ public class AdminStudentController {
         }
         studentService.remove(id);
         return new ResponseEntity<>(studentOptional.get(), HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping("/edit/{id}")
+    public ResponseEntity<Student> editStudent(@PathVariable Long id,@ModelAttribute StudentForm studentForm){
+        Optional<Student> studentOptional = studentService.findById(id);
+        if (!studentOptional.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        } else {
+            MultipartFile file = studentForm.getAvatar();
+            String fileName = file.getOriginalFilename();
+            String fileUpload = env.getProperty("upload.path").toString();
+            String userName = studentForm.getUserName();
+            String password = studentForm.getPassword();
+            Set<AppRole> roleSet = studentForm.getRoleSet();
+            String code = studentForm.getCode();
+            String fullName = studentForm.getFullName();
+            String phoneNumber = studentForm.getPhoneNumber();
+            String email = studentForm.getEmail();
+            Gender gender = studentForm.getGender();
+            String dateOfBirth = studentForm.getDateOfBirth();
+            String address = studentForm.getAddress();
+            Classes classes = studentForm.getClasses();
+            Tuition tuition = studentForm.getTuition();
+            StatusStudent statusStudent = studentForm.getStatusStudent();
+            try {
+                FileCopyUtils.copy(studentForm.getAvatar().getBytes(), new File(fileUpload + fileName));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            AppUser appUser = new AppUser(userName, password, roleSet);
+            appUserService.save(appUser);
+            Student student = new Student(appUser,code,fullName,phoneNumber,fileName,email,gender,dateOfBirth,address,classes,tuition,statusStudent);
+            student.setId(id);
+            studentService.save(student);
+            return new ResponseEntity<>(student, HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Student> findStudentById(@PathVariable Long id){
+        Student student = studentService.findById(id).get();
+        return new ResponseEntity<>(student, HttpStatus.OK);
     }
 }
