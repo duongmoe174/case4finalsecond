@@ -11,19 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Optional;
 import java.util.Set;
 
 @RestController
 @RequestMapping("/admin")
 @CrossOrigin("*")
-public class AdminController {
+public class AdminTeacherController {
     @Autowired
     private IGenderService genderService;
     @Autowired
