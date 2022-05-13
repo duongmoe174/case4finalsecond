@@ -18,6 +18,10 @@ public class StatusStudent {
         this.name = name;
     }
 
+    public StatusStudent(String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }

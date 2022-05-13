@@ -24,7 +24,7 @@ public class Student {
     @OneToOne
     private Tuition tuition;
 
-    @OneToOne
+    @ManyToOne
     private StatusStudent statusStudent;
 
     public Student() {
