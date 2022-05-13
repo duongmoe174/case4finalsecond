@@ -1,33 +1,26 @@
-package com.duong.mycase41.model;
+package com.duong.mycase41.model.DTO.formUser;
 
-import javax.persistence.*;
-import java.util.Set;
+import com.duong.mycase41.model.*;
+import org.springframework.web.multipart.MultipartFile;
 
-@Entity
-@Table(name = "student")
-public class Student {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class StudentForm {
     private Long id;
-    @OneToOne
     private AppUser appUser;
     private String fullName;
     private String phoneNumber;
-    private String avatar;
+    private MultipartFile avatar;
     private String email;
-    @OneToOne
     private Gender gender;
     private String dateOfBirth;
     private String address;
-    @ManyToOne
     private Classes classes;
-    @OneToOne
+    private Teacher teacher;
     private Tuition tuition;
 
-    public Student() {
+    public StudentForm() {
     }
 
-    public Student(Long id, AppUser appUser, String fullName, String phoneNumber, String avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Tuition tuition) {
+    public StudentForm(Long id, AppUser appUser, String fullName, String phoneNumber, MultipartFile avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Teacher teacher, Tuition tuition) {
         this.id = id;
         this.appUser = appUser;
         this.fullName = fullName;
@@ -38,10 +31,11 @@ public class Student {
         this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.classes = classes;
+        this.teacher = teacher;
         this.tuition = tuition;
     }
 
-    public Student(AppUser appUser, String fullName, String phoneNumber, String avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Tuition tuition) {
+    public StudentForm(AppUser appUser, String fullName, String phoneNumber, MultipartFile avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Teacher teacher, Tuition tuition) {
         this.appUser = appUser;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
@@ -51,6 +45,7 @@ public class Student {
         this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.classes = classes;
+        this.teacher = teacher;
         this.tuition = tuition;
     }
 
@@ -86,11 +81,11 @@ public class Student {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getAvatar() {
+    public MultipartFile getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(String avatar) {
+    public void setAvatar(MultipartFile avatar) {
         this.avatar = avatar;
     }
 
@@ -132,6 +127,14 @@ public class Student {
 
     public void setClasses(Classes classes) {
         this.classes = classes;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 
     public Tuition getTuition() {
