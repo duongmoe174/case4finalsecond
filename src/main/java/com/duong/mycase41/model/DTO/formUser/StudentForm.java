@@ -10,6 +10,8 @@ public class StudentForm {
     private String userName;
     private String password;
     private Set<AppRole> roleSet;
+
+    private String code;
     private String fullName;
     private String phoneNumber;
     private MultipartFile avatar;
@@ -20,6 +22,41 @@ public class StudentForm {
     private Classes classes;
     private Tuition tuition;
     private StatusStudent statusStudent;
+
+    public StudentForm(String userName, String password, Set<AppRole> roleSet, String code, String fullName, String phoneNumber, MultipartFile avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Tuition tuition, StatusStudent statusStudent) {
+        this.userName = userName;
+        this.password = password;
+        this.roleSet = roleSet;
+        this.code = code;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.avatar = avatar;
+        this.email = email;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.classes = classes;
+        this.tuition = tuition;
+        this.statusStudent = statusStudent;
+    }
+
+    public StudentForm(Long id, String userName, String password, Set<AppRole> roleSet, String code, String fullName, String phoneNumber, MultipartFile avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Tuition tuition, StatusStudent statusStudent) {
+        this.id = id;
+        this.userName = userName;
+        this.password = password;
+        this.roleSet = roleSet;
+        this.code = code;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.avatar = avatar;
+        this.email = email;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.classes = classes;
+        this.tuition = tuition;
+        this.statusStudent = statusStudent;
+    }
 
     public StudentForm() {
     }
@@ -54,6 +91,14 @@ public class StudentForm {
 
     public void setRoleSet(Set<AppRole> roleSet) {
         this.roleSet = roleSet;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getFullName() {
@@ -133,39 +178,6 @@ public class StudentForm {
     }
 
     public void setStatusStudent(StatusStudent statusStudent) {
-        this.statusStudent = statusStudent;
-    }
-
-    public StudentForm(String userName, String password, Set<AppRole> roleSet, String fullName, String phoneNumber, MultipartFile avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Tuition tuition, StatusStudent statusStudent) {
-        this.userName = userName;
-        this.password = password;
-        this.roleSet = roleSet;
-        this.fullName = fullName;
-        this.phoneNumber = phoneNumber;
-        this.avatar = avatar;
-        this.email = email;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.address = address;
-        this.classes = classes;
-        this.tuition = tuition;
-        this.statusStudent = statusStudent;
-    }
-
-    public StudentForm(Long id, String userName, String password, Set<AppRole> roleSet, String fullName, String phoneNumber, MultipartFile avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Tuition tuition, StatusStudent statusStudent) {
-        this.id = id;
-        this.userName = userName;
-        this.password = password;
-        this.roleSet = roleSet;
-        this.fullName = fullName;
-        this.phoneNumber = phoneNumber;
-        this.avatar = avatar;
-        this.email = email;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.address = address;
-        this.classes = classes;
-        this.tuition = tuition;
         this.statusStudent = statusStudent;
     }
 }
