@@ -15,7 +15,7 @@ public class Student {
     private String phoneNumber;
     private String avatar;
     private String email;
-    @OneToOne
+    @ManyToOne
     private Gender gender;
     private String dateOfBirth;
     private String address;
@@ -23,11 +23,39 @@ public class Student {
     private Classes classes;
     @OneToOne
     private Tuition tuition;
-
     @ManyToOne
     private StatusStudent statusStudent;
 
     public Student() {
+    }
+
+    public Student(Long id, AppUser appUser, String fullName, String phoneNumber, String avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Tuition tuition, StatusStudent statusStudent) {
+        this.id = id;
+        this.appUser = appUser;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.avatar = avatar;
+        this.email = email;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.classes = classes;
+        this.tuition = tuition;
+        this.statusStudent = statusStudent;
+    }
+
+    public Student(AppUser appUser, String fullName, String phoneNumber, String avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Tuition tuition, StatusStudent statusStudent) {
+        this.appUser = appUser;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.avatar = avatar;
+        this.email = email;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.classes = classes;
+        this.tuition = tuition;
+        this.statusStudent = statusStudent;
     }
 
     public Long getId() {
@@ -123,35 +151,6 @@ public class Student {
     }
 
     public void setStatusStudent(StatusStudent statusStudent) {
-        this.statusStudent = statusStudent;
-    }
-
-    public Student(AppUser appUser, String fullName, String phoneNumber, String avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Tuition tuition, StatusStudent statusStudent) {
-        this.appUser = appUser;
-        this.fullName = fullName;
-        this.phoneNumber = phoneNumber;
-        this.avatar = avatar;
-        this.email = email;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.address = address;
-        this.classes = classes;
-        this.tuition = tuition;
-        this.statusStudent = statusStudent;
-    }
-
-    public Student(Long id, AppUser appUser, String fullName, String phoneNumber, String avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Tuition tuition, StatusStudent statusStudent) {
-        this.id = id;
-        this.appUser = appUser;
-        this.fullName = fullName;
-        this.phoneNumber = phoneNumber;
-        this.avatar = avatar;
-        this.email = email;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.address = address;
-        this.classes = classes;
-        this.tuition = tuition;
         this.statusStudent = statusStudent;
     }
 }

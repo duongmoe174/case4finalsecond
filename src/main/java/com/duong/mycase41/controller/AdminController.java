@@ -85,6 +85,10 @@ public class AdminController {
         String userName = teacherForm.getAppUser().getName();
         String password = teacherForm.getAppUser().getPassword();
         Set<AppRole> role = teacherForm.getAppUser().getRoleSet();
+        String fullName = teacherForm.getFullName();
+        String phoneNumber = teacherForm.getPhoneNumber();
+        String email = teacherForm.getEmail();
+        Gender gender = teacherForm.getGender();
 
     }
 }

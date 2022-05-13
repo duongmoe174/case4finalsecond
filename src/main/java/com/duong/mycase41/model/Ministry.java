@@ -14,35 +14,12 @@ public class Ministry {
     private String phoneNumber;
     private String avatar;
     private String email;
-    @OneToOne
+    @ManyToOne
     private Gender gender;
     private String dateOfBirth;
     private String address;
 
     public Ministry() {
-    }
-
-    public Ministry(Long id, AppUser appUser, String fullName, String phoneNumber, String avatar, String email, Gender gender, String dateOfBirth, String address) {
-        this.id = id;
-        this.appUser = appUser;
-        this.fullName = fullName;
-        this.phoneNumber = phoneNumber;
-        this.avatar = avatar;
-        this.email = email;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.address = address;
-    }
-
-    public Ministry(AppUser appUser, String fullName, String phoneNumber, String avatar, String email, Gender gender, String dateOfBirth, String address) {
-        this.appUser = appUser;
-        this.fullName = fullName;
-        this.phoneNumber = phoneNumber;
-        this.avatar = avatar;
-        this.email = email;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.address = address;
     }
 
     public Long getId() {
@@ -114,6 +91,29 @@ public class Ministry {
     }
 
     public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Ministry(AppUser appUser, String fullName, String phoneNumber, String avatar, String email, Gender gender, String dateOfBirth, String address) {
+        this.appUser = appUser;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.avatar = avatar;
+        this.email = email;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+    }
+
+    public Ministry(Long id, AppUser appUser, String fullName, String phoneNumber, String avatar, String email, Gender gender, String dateOfBirth, String address) {
+        this.id = id;
+        this.appUser = appUser;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.avatar = avatar;
+        this.email = email;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
         this.address = address;
     }
 }

@@ -15,7 +15,7 @@ public class Teacher {
     private String phoneNumber;
     private String avatar;
     private String email;
-    @OneToOne
+    @ManyToOne
     private Gender gender;
     private String dateOfBirth;
     private String address;
@@ -25,31 +25,6 @@ public class Teacher {
     private Set<Classes> classesSet;
 
     public Teacher() {
-    }
-
-    public Teacher(AppUser appUser, String fullName, String phoneNumber, String avatar, String email, Gender gender, String dateOfBirth, String address, Set<Classes> classesSet) {
-        this.appUser = appUser;
-        this.fullName = fullName;
-        this.phoneNumber = phoneNumber;
-        this.avatar = avatar;
-        this.email = email;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.address = address;
-        this.classesSet = classesSet;
-    }
-
-    public Teacher(Long id, AppUser appUser, String fullName, String phoneNumber, String avatar, String email, Gender gender, String dateOfBirth, String address, Set<Classes> classesSet) {
-        this.id = id;
-        this.appUser = appUser;
-        this.fullName = fullName;
-        this.phoneNumber = phoneNumber;
-        this.avatar = avatar;
-        this.email = email;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.address = address;
-        this.classesSet = classesSet;
     }
 
     public Long getId() {
@@ -129,6 +104,31 @@ public class Teacher {
     }
 
     public void setClassesSet(Set<Classes> classesSet) {
+        this.classesSet = classesSet;
+    }
+
+    public Teacher(AppUser appUser, String fullName, String phoneNumber, String avatar, String email, Gender gender, String dateOfBirth, String address, Set<Classes> classesSet) {
+        this.appUser = appUser;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.avatar = avatar;
+        this.email = email;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.classesSet = classesSet;
+    }
+
+    public Teacher(Long id, AppUser appUser, String fullName, String phoneNumber, String avatar, String email, Gender gender, String dateOfBirth, String address, Set<Classes> classesSet) {
+        this.id = id;
+        this.appUser = appUser;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.avatar = avatar;
+        this.email = email;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
         this.classesSet = classesSet;
     }
 }
