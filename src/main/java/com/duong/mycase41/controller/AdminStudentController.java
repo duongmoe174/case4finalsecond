@@ -11,6 +11,9 @@ import com.duong.mycase41.service.transcript.ITranscriptService;
 import com.duong.mycase41.service.tuition.ITuitionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.FileCopyUtils;
@@ -101,9 +104,25 @@ public class AdminStudentController {
         return new ResponseEntity<>(classesService.findAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/transcripts")
+    private ResponseEntity<Iterable<Transcript>> showAllTranscript(){
+        return new ResponseEntity<>(transcriptService.findAll(), HttpStatus.OK);
+    }
+
+//    @GetMapping
+//    public ResponseEntity<Iterable<Student>> showAllStudent(){
+//        return new ResponseEntity<>(studentService.findAll(), HttpStatus.OK);
+//    }
+
     @GetMapping
-    public ResponseEntity<Iterable<Student>> showAllStudent(){
-        return new ResponseEntity<>(studentService.findAll(), HttpStatus.OK);
+    public ResponseEntity<Page<Student>> showAllStudent(@RequestParam(name = "q")Optional<String> q, @PageableDefault(value = 3) Pageable pageable){
+        Page<Student> students;
+        if (!q.isPresent()){
+            students = studentService.findAll(pageable);
+        } else {
+            students = studentService.findAllByFullNameContaining(q.get(), pageable);
+        }
+        return new ResponseEntity<>(students, HttpStatus.OK);
     }
 
     @PostMapping
