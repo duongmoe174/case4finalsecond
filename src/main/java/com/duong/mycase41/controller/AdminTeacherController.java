@@ -53,6 +53,15 @@ public class AdminTeacherController {
         return new ResponseEntity<>(classesService.save(classes), HttpStatus.CREATED);
     }
 
+    @GetMapping("/classes/{id}")
+    public ResponseEntity<Classes> getClassById (@PathVariable Long id) {
+        Optional<Classes> classesOptional = classesService.findById(id);
+        if (!classesOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(classesOptional.get(), HttpStatus.OK);
+    }
+
     @DeleteMapping("/classes/{id}")
     public ResponseEntity<Classes> deleteClasses (@PathVariable Long id) {
         Optional<Classes> classesOptional = classesService.findById(id);
@@ -83,6 +92,14 @@ public class AdminTeacherController {
         return new ResponseEntity<>(subjectService.findAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/subject/{id}")
+    public ResponseEntity<AppSubject> getSubjectById (@PathVariable Long id) {
+        Optional<AppSubject> subjectOptional = subjectService.findById(id);
+        if (!subjectOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(subjectOptional.get(), HttpStatus.OK);
+    }
     @PostMapping("/subject")
     public ResponseEntity<AppSubject> createSubject(@ModelAttribute AppSubject subject) {
         return new ResponseEntity<>(subjectService.save(subject), HttpStatus.CREATED);
