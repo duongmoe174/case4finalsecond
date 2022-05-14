@@ -109,6 +109,11 @@ public class AdminStudentController {
         return new ResponseEntity<>(transcriptService.findAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/appUsers")
+    private ResponseEntity<Iterable<AppUser>> appUser(){
+        return new ResponseEntity<>(appUserService.findAll(), HttpStatus.OK);
+    }
+
 //    @GetMapping
 //    public ResponseEntity<Iterable<Student>> showAllStudent(){
 //        return new ResponseEntity<>(studentService.findAll(), HttpStatus.OK);
