@@ -1,6 +1,7 @@
 package com.duong.mycase41.controller;
 
 import com.duong.mycase41.model.*;
+import com.duong.mycase41.model.DTO.IRoleStudent;
 import com.duong.mycase41.model.DTO.formUser.StudentForm;
 import com.duong.mycase41.service.appuser.IAppUserService;
 import com.duong.mycase41.service.classes.IClassesService;
@@ -114,6 +115,8 @@ public class AdminStudentController {
         return new ResponseEntity<>(appUserService.findAll(), HttpStatus.OK);
     }
 
+
+
 //    @GetMapping
 //    public ResponseEntity<Iterable<Student>> showAllStudent(){
 //        return new ResponseEntity<>(studentService.findAll(), HttpStatus.OK);
@@ -211,5 +214,11 @@ public class AdminStudentController {
     public ResponseEntity<Student> findStudentById(@PathVariable Long id){
         Student student = studentService.findById(id).get();
         return new ResponseEntity<>(student, HttpStatus.OK);
+    }
+
+    @GetMapping("/roleStudent")
+    private ResponseEntity<Iterable<IRoleStudent>> getRoleStudent(){
+        Iterable<IRoleStudent> iRoleStudents = studentService.getRoleStudent();
+        return new ResponseEntity<>(iRoleStudents, HttpStatus.OK);
     }
 }

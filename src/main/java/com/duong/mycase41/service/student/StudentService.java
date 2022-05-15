@@ -1,5 +1,6 @@
 package com.duong.mycase41.service.student;
 
+import com.duong.mycase41.model.DTO.IRoleStudent;
 import com.duong.mycase41.model.Student;
 import com.duong.mycase41.repository.IStudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,11 @@ public class StudentService implements IStudentService {
     @Override
     public Page<Student> findAllByFullNameContaining(String fullName, Pageable pageable) {
         return studentRepository.findAllByFullNameContaining(fullName, pageable);
+    }
+
+    @Override
+    public Iterable<IRoleStudent> getRoleStudent() {
+        return studentRepository.getRoleStudent();
     }
 
 
