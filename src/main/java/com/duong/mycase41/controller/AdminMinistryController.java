@@ -7,6 +7,9 @@ import com.duong.mycase41.service.gender.IGenderService;
 import com.duong.mycase41.service.ministry.IMinistryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.FileCopyUtils;
@@ -46,8 +49,14 @@ public class AdminMinistryController {
     }
 
     @GetMapping("/ministries")
-    public ResponseEntity<Iterable<Ministry>> getAllMinistry(){
-        return new ResponseEntity<>(ministryService.findAll(), HttpStatus.OK);
+    public ResponseEntity<Page<Ministry>> getAllMinistry(@RequestParam(name = "q")Optional<String> q, @PageableDefault(value = 3)Pageable pageable){
+        Page<Ministry> ministries;
+        if (!q.isPresent()){
+            ministries = ministryService.findAll(pageable);
+        }else{
+            ministries = ministryService.findAllByFullNameContaining(q.get(), pageable);
+        }
+        return new ResponseEntity<>(ministries, HttpStatus.OK);
     }
 
     @PostMapping("/ministries")
