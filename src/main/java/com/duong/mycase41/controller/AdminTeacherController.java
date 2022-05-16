@@ -164,6 +164,7 @@ public class AdminTeacherController {
     //-----------TEACHER--------------
     @Autowired
     private ITeacherService teacherService;
+    @GetMapping("/teachers")
     public ResponseEntity<Page<Teacher>> getAllTeacher(@RequestParam(name = "t") Optional<String> t, @PageableDefault(value = 8) Pageable pageable) {
         Page<Teacher> teachers;
         if (!t.isPresent()) {
