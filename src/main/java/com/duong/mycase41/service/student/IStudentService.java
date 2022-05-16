@@ -12,5 +12,5 @@ public interface IStudentService extends IGeneralService<Student> {
 
     Page<Student> findAllByFullNameContaining(String fullName, Pageable pageable);
 
-    Iterable<IRoleStudent> getRoleStudent();
+    Iterable<IRoleStudent> getRoleStudent(Long id);
 }

@@ -216,9 +216,9 @@ public class AdminStudentController {
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
-    @GetMapping("/roleStudent")
-    private ResponseEntity<Iterable<IRoleStudent>> getRoleStudent(){
-        Iterable<IRoleStudent> iRoleStudents = studentService.getRoleStudent();
+    @GetMapping("/roleStudent/{id}")
+    private ResponseEntity<Iterable<IRoleStudent>> getRoleStudent(@PathVariable Long id){
+        Iterable<IRoleStudent> iRoleStudents = studentService.getRoleStudent(id);
         return new ResponseEntity<>(iRoleStudents, HttpStatus.OK);
     }
 }
