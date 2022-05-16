@@ -1,5 +1,6 @@
 package com.duong.mycase41.service.teacher;
 
+import com.duong.mycase41.model.DTO.formTeacher.IStudentOfTeacher;
 import com.duong.mycase41.model.Teacher;
 import com.duong.mycase41.repository.ITeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,15 @@ public class TeacherService implements ITeacherService{
     @Override
     public Page<Teacher> findAllByFullNameContaining(String fullName, Pageable pageable) {
         return teacherRepository.findAllByFullNameContaining(fullName, pageable);
+    }
+
+    @Override
+    public Iterable<IStudentOfTeacher> getListStudentByTeacherId(Long id) {
+        return teacherRepository.getListStudentByTeacherId(id);
+    }
+
+    @Override
+    public Iterable<IStudentOfTeacher> showAllStudent() {
+        return teacherRepository.showAllStudent();
     }
 }
