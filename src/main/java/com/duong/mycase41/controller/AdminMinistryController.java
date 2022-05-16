@@ -43,7 +43,7 @@ public class AdminMinistryController {
     @GetMapping("/genders")
     private ResponseEntity<Iterable<Gender>> showAllGender(){
         return new ResponseEntity<>(genderService.findAll(), HttpStatus.OK);
-    }   
+    }
 
     @GetMapping("/ministries")
     public ResponseEntity<Iterable<Ministry>> getAllMinistry(){
@@ -116,5 +116,20 @@ public class AdminMinistryController {
             ministryService.save(ministry);
             return new ResponseEntity<>(ministry, HttpStatus.OK);
         }
+    }
+
+    @GetMapping("/ministries/{id}")
+    public ResponseEntity<Ministry> findOne(@PathVariable Long id){
+        Ministry ministry = ministryService.findById(id).get();
+        return new ResponseEntity<>(ministry,HttpStatus.OK);
+    }
+
+    @GetMapping("/ministries/{id}")
+    public ResponseEntity<Ministry> getClassById (@PathVariable Long id) {
+        Optional<Ministry> ministryOptional = ministryService.findById(id);
+        if (!ministryOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(ministryOptional.get(), HttpStatus.OK);
     }
 }
