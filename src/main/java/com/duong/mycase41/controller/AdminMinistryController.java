@@ -2,6 +2,7 @@ package com.duong.mycase41.controller;
 
 import com.duong.mycase41.model.*;
 import com.duong.mycase41.model.DTO.formUser.MinistryForm;
+import com.duong.mycase41.service.approle.IAppRoleService;
 import com.duong.mycase41.service.appuser.IAppUserService;
 import com.duong.mycase41.service.gender.IGenderService;
 import com.duong.mycase41.service.ministry.IMinistryService;
@@ -30,6 +31,9 @@ public class AdminMinistryController {
     private IGenderService genderService;
 
     @Autowired
+    private IAppRoleService appRoleService;
+
+    @Autowired
     private IMinistryService ministryService;
 
     @Autowired
@@ -46,6 +50,16 @@ public class AdminMinistryController {
     @GetMapping("/genders")
     private ResponseEntity<Iterable<Gender>> showAllGender(){
         return new ResponseEntity<>(genderService.findAll(), HttpStatus.OK);
+    }
+
+    @ModelAttribute("rolesets")
+    private Iterable<AppRole> appRoles(){
+        return appRoleService.findAll();
+    }
+
+    @GetMapping("/rolesets")
+    private ResponseEntity<Iterable<AppRole>> showRollSet(){
+        return new ResponseEntity<>(appRoleService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/ministries")
