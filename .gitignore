@@ -105,5 +105,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+.idea
 #config
 src/main/resources/local.env
