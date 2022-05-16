@@ -13,6 +13,10 @@ public class AppSubject {
     public AppSubject() {
     }
 
+    public AppSubject(String name) {
+        this.name = name;
+    }
+
     public AppSubject(Long id, String name) {
         this.id = id;
         this.name = name;
