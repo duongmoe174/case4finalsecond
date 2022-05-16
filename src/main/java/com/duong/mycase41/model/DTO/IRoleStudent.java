@@ -2,7 +2,7 @@ package com.duong.mycase41.model.DTO;
 
 public interface IRoleStudent {
 
-    String getStudentName();
+    String getName();
 
     double getPoint1();
 
