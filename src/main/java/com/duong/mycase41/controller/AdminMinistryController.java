@@ -118,11 +118,11 @@ public class AdminMinistryController {
         }
     }
 
-    @GetMapping("/ministries/{id}")
-    public ResponseEntity<Ministry> findOne(@PathVariable Long id){
-        Ministry ministry = ministryService.findById(id).get();
-        return new ResponseEntity<>(ministry,HttpStatus.OK);
-    }
+//    @GetMapping("/ministries/{id}")
+//    public ResponseEntity<Ministry> findOne(@PathVariable Long id){
+//        Ministry ministry = ministryService.findById(id).get();
+//        return new ResponseEntity<>(ministry,HttpStatus.OK);
+//    }
 
     @GetMapping("/ministries/{id}")
     public ResponseEntity<Ministry> getClassById (@PathVariable Long id) {
