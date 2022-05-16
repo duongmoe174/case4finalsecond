@@ -1,5 +1,6 @@
 package com.duong.mycase41.controller;
 
+import com.duong.mycase41.model.DTO.formTeacher.IClassOfTeacher;
 import com.duong.mycase41.model.DTO.formTeacher.IStudentOfTeacher;
 import com.duong.mycase41.model.Teacher;
 import com.duong.mycase41.service.teacher.ITeacherService;
@@ -36,5 +37,17 @@ public class VATeacherController {
     public ResponseEntity<Iterable<Teacher>> getTeacher(){
         Iterable<Teacher> listTeacher = teacherService.findAll();
         return new ResponseEntity<>(listTeacher, HttpStatus.OK);
+    }
+
+    @GetMapping("/list-class/{id}")
+    public ResponseEntity<Iterable<IClassOfTeacher>> getListClassByTeacherId(@PathVariable Long id){
+        Iterable<IClassOfTeacher> getClass = teacherService.getListClassByTeacherId(id);
+        return new ResponseEntity<>(getClass, HttpStatus.OK);
+    }
+
+    @GetMapping("/list-class")
+    public ResponseEntity<Iterable<IClassOfTeacher>> showAllClass(){
+        Iterable<IClassOfTeacher> listClass = teacherService.showAllClass();
+        return new ResponseEntity<>(listClass, HttpStatus.OK);
     }
 }
