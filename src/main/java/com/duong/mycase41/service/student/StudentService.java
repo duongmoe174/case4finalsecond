@@ -45,7 +45,7 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public Iterable<IRoleStudent> getRoleStudent(Long id) {
+    public IRoleStudent getRoleStudent(Long id) {
         return studentRepository.getRoleStudent(id);
     }
 

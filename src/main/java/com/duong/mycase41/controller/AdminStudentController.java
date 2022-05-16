@@ -121,8 +121,8 @@ public class AdminStudentController {
 //    public ResponseEntity<Iterable<Student>> showAllStudent(){
 //        return new ResponseEntity<>(studentService.findAll(), HttpStatus.OK);
 //    }
-
-    @GetMapping
+//
+    @GetMapping("/list")
     public ResponseEntity<Page<Student>> showAllStudent(@RequestParam(name = "q")Optional<String> q, @PageableDefault(value = 3) Pageable pageable){
         Page<Student> students;
         if (!q.isPresent()){
@@ -133,7 +133,7 @@ public class AdminStudentController {
         return new ResponseEntity<>(students, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<Student> createStudent(@ModelAttribute StudentForm studentForm){
         MultipartFile file = studentForm.getAvatar();
         String fileName = file.getOriginalFilename();
@@ -217,8 +217,8 @@ public class AdminStudentController {
     }
 
     @GetMapping("/roleStudent/{id}")
-    private ResponseEntity<Iterable<IRoleStudent>> getRoleStudent(@PathVariable Long id){
-        Iterable<IRoleStudent> iRoleStudents = studentService.getRoleStudent(id);
+    private ResponseEntity<IRoleStudent> getRoleStudent(@PathVariable Long id){
+        IRoleStudent iRoleStudents = studentService.getRoleStudent(id);
         return new ResponseEntity<>(iRoleStudents, HttpStatus.OK);
     }
 }

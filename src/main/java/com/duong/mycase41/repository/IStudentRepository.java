@@ -18,6 +18,6 @@ public interface IStudentRepository extends PagingAndSortingRepository<Student, 
             "    join tuition t2 on t2.id = student.tuition_id\n" +
             "    join status_student ss on ss.id = student.status_student_id where student_id like ?1")
 
-    Iterable<IRoleStudent> getRoleStudent(Long id);
+    IRoleStudent getRoleStudent(Long id);
 
 }
