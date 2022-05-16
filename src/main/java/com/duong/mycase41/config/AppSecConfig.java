@@ -55,6 +55,9 @@ public class AppSecConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/login").permitAll()
                 .and().authorizeRequests().antMatchers("/admin**").hasAnyRole("ADMIN")
                 .and().authorizeRequests().antMatchers("/user**").hasAnyRole("USER")
+                .and().authorizeRequests().antMatchers("/students").hasAnyRole("STUDENT")
+                .and().authorizeRequests().antMatchers("/teachers").hasAnyRole("TEACHER")
+                .and().authorizeRequests().antMatchers("/ministries").hasAnyRole("MINISTRY")
                 .and()
                 .csrf().disable();
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)

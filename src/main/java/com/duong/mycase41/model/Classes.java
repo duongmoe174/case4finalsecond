@@ -15,6 +15,10 @@ public class Classes {
     public Classes() {
     }
 
+    public Classes(String name) {
+        this.name = name;
+    }
+
     public Classes(Long id, String name) {
         this.id = id;
         this.name = name;

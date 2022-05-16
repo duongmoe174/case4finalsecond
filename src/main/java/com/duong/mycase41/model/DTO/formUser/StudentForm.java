@@ -3,9 +3,15 @@ package com.duong.mycase41.model.DTO.formUser;
 import com.duong.mycase41.model.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Set;
+
 public class StudentForm {
     private Long id;
-    private AppUser appUser;
+    private String userName;
+    private String password;
+    private Set<AppRole> roleSet;
+
+    private String code;
     private String fullName;
     private String phoneNumber;
     private MultipartFile avatar;
@@ -17,11 +23,11 @@ public class StudentForm {
     private Tuition tuition;
     private StatusStudent statusStudent;
 
-    public StudentForm() {
-    }
-
-    public StudentForm(AppUser appUser, String fullName, String phoneNumber, MultipartFile avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Tuition tuition, StatusStudent statusStudent) {
-        this.appUser = appUser;
+    public StudentForm(String userName, String password, Set<AppRole> roleSet, String code, String fullName, String phoneNumber, MultipartFile avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Tuition tuition, StatusStudent statusStudent) {
+        this.userName = userName;
+        this.password = password;
+        this.roleSet = roleSet;
+        this.code = code;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.avatar = avatar;
@@ -34,9 +40,12 @@ public class StudentForm {
         this.statusStudent = statusStudent;
     }
 
-    public StudentForm(Long id, AppUser appUser, String fullName, String phoneNumber, MultipartFile avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Tuition tuition, StatusStudent statusStudent) {
+    public StudentForm(Long id, String userName, String password, Set<AppRole> roleSet, String code, String fullName, String phoneNumber, MultipartFile avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Tuition tuition, StatusStudent statusStudent) {
         this.id = id;
-        this.appUser = appUser;
+        this.userName = userName;
+        this.password = password;
+        this.roleSet = roleSet;
+        this.code = code;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.avatar = avatar;
@@ -47,6 +56,9 @@ public class StudentForm {
         this.classes = classes;
         this.tuition = tuition;
         this.statusStudent = statusStudent;
+    }
+
+    public StudentForm() {
     }
 
     public Long getId() {
@@ -57,12 +69,36 @@ public class StudentForm {
         this.id = id;
     }
 
-    public AppUser getAppUser() {
-        return appUser;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setAppUser(AppUser appUser) {
-        this.appUser = appUser;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<AppRole> getRoleSet() {
+        return roleSet;
+    }
+
+    public void setRoleSet(Set<AppRole> roleSet) {
+        this.roleSet = roleSet;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getFullName() {
