@@ -2,11 +2,15 @@ package com.duong.mycase41.controller;
 
 import com.duong.mycase41.model.*;
 import com.duong.mycase41.model.DTO.formUser.MinistryForm;
+import com.duong.mycase41.service.approle.IAppRoleService;
 import com.duong.mycase41.service.appuser.IAppUserService;
 import com.duong.mycase41.service.gender.IGenderService;
 import com.duong.mycase41.service.ministry.IMinistryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.FileCopyUtils;
@@ -27,6 +31,9 @@ public class AdminMinistryController {
     private IGenderService genderService;
 
     @Autowired
+    private IAppRoleService appRoleService;
+
+    @Autowired
     private IMinistryService ministryService;
 
     @Autowired
@@ -45,9 +52,25 @@ public class AdminMinistryController {
         return new ResponseEntity<>(genderService.findAll(), HttpStatus.OK);
     }
 
+    @ModelAttribute("rolesets")
+    private Iterable<AppRole> appRoles(){
+        return appRoleService.findAll();
+    }
+
+    @GetMapping("/rolesets")
+    private ResponseEntity<Iterable<AppRole>> showRollSet(){
+        return new ResponseEntity<>(appRoleService.findAll(), HttpStatus.OK);
+    }
+
     @GetMapping("/ministries")
-    public ResponseEntity<Iterable<Ministry>> getAllMinistry(){
-        return new ResponseEntity<>(ministryService.findAll(), HttpStatus.OK);
+    public ResponseEntity<Page<Ministry>> getAllMinistry(@RequestParam(name = "q")Optional<String> q, @PageableDefault(value = 3)Pageable pageable){
+        Page<Ministry> ministries;
+        if (!q.isPresent()){
+            ministries = ministryService.findAll(pageable);
+        }else{
+            ministries = ministryService.findAllByFullNameContaining(q.get(), pageable);
+        }
+        return new ResponseEntity<>(ministries, HttpStatus.OK);
     }
 
     @PostMapping("/ministries")
