@@ -83,7 +83,7 @@ public class AdminTeacherController {
         return new ResponseEntity<>(classesService.findAll(), HttpStatus.OK);
     }
     @PostMapping("/classes")
-    public ResponseEntity<Classes> createClass(@ModelAttribute Classes classes) {
+    public ResponseEntity<Classes> createClass(@RequestBody Classes classes) {
         return new ResponseEntity<>(classesService.save(classes), HttpStatus.CREATED);
     }
 
@@ -135,7 +135,7 @@ public class AdminTeacherController {
         return new ResponseEntity<>(subjectOptional.get(), HttpStatus.OK);
     }
     @PostMapping("/subject")
-    public ResponseEntity<AppSubject> createSubject(@ModelAttribute AppSubject subject) {
+    public ResponseEntity<AppSubject> createSubject(@RequestBody AppSubject subject) {
         return new ResponseEntity<>(subjectService.save(subject), HttpStatus.CREATED);
     }
 
