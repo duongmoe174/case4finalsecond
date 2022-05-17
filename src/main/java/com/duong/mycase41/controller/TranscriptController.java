@@ -1,6 +1,7 @@
 package com.duong.mycase41.controller;
 
 import com.duong.mycase41.model.AppSubject;
+import com.duong.mycase41.model.DTO.IRoleMinistry;
 import com.duong.mycase41.model.DTO.SearchTranscript;
 import com.duong.mycase41.model.Student;
 import com.duong.mycase41.model.Transcript;
@@ -125,7 +126,8 @@ public ResponseEntity<Page<Transcript>> showAllTranscript(@RequestParam(name = "
 
     @GetMapping("/{id}")
     public ResponseEntity<Transcript> findOne(@PathVariable Long id) {
-        return new ResponseEntity<>(transcriptService.findById(id).get(), HttpStatus.OK);
+        Transcript transcript = transcriptService.findById(id).get();
+        return new ResponseEntity<>(transcript, HttpStatus.OK);
     }
 
 //    @GetMapping
@@ -133,5 +135,11 @@ public ResponseEntity<Page<Transcript>> showAllTranscript(@RequestParam(name = "
 //        Iterable<SearchTranscript> searchTranscripts = transcriptService.getNameStudentAllBy();
 //        return new ResponseEntity<>(searchTranscripts,HttpStatus.OK);
 //    }
+
+    @GetMapping("/ministry/{id}")
+    private ResponseEntity<IRoleMinistry> getroleMinistry(@PathVariable Long id){
+        IRoleMinistry iRoleMinistry = transcriptService.getRoleMinistry(id);
+        return new ResponseEntity<>(iRoleMinistry,HttpStatus.OK);
+    }
 
 }
