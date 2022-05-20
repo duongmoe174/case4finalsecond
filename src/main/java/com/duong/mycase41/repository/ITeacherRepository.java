@@ -48,4 +48,5 @@ public interface ITeacherRepository extends PagingAndSortingRepository<Teacher, 
 
     @Query(nativeQuery = true, value = GETLISTCLASS)
     Iterable<IClassOfTeacher> showAllClass();
+
 }
